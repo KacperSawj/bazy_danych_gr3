@@ -1,0 +1,1 @@
+alter table postac add column pesel varchar(11) primary key not null;
