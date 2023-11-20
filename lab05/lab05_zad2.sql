@@ -11,4 +11,5 @@ alter table postac modify rodzaj enum('wiking','ptak','kobieta','syrena');
 
 # pkt c
 
-insert into postac values('12345678917',default,'Gertruda Nieszczera','syrena',2000-10-10,default,default);
+insert into postac values('12345678917',7,'Gertruda Nieszczera','syrena',2000-10-10,25,null,null);
+select * from postac;
