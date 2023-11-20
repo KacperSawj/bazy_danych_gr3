@@ -14,4 +14,10 @@ create table marynarz as
 select id_postaci, nazwa, statek
 from postac;
 
+
 insert into marynarz select * from postac where statek is not null;
+select * from marynarz;
+# pkt c
+show create table marynarz;
+
+alter table marynarz add FOREIGN KEY (`statek`) REFERENCES `statek` (`nazwa_statku`);
