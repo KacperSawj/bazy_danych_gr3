@@ -2,7 +2,7 @@ select * from zasob;
 
 # pkt 1
 
-select idZasobu,nazwa,concat('waga(netto): ',0.7*waga*ilosc),concat('waga odpadków to: ',0.3*waga),dataPozyskania from zasob where rodzaj='jedzenie';
+select idZasobu,nazwa,concat('waga(netto): ',(0.7*waga)*ilosc),concat('waga odpadków to: ',(0.3*waga)*ilosc),dataPozyskania from zasob where rodzaj='jedzenie';
 
 # pkt 2
 
