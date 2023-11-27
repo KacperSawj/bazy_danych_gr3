@@ -27,3 +27,7 @@ nazwa varchar(60),
 wiek int,
 primary key(id_zwierza)
 );
+
+# pkt f
+
+insert into zwierz values(default,"Drozd",321);
