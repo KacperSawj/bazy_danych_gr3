@@ -5,10 +5,16 @@ group by w.nazwa
 having sum(length(ew.dziennik)) < 400;
 
 # pkt 2
-select w.nazwa, sum(z.waga*e.ilosc)/count(u.id_uczestnika) as srednia_waga from kreatura k
+select * from uczestnicy;
+
+select id_wyprawy, count(id_uczestnika) from uczestnicy
+where id_uczestnika is not null
+group by id_wyprawy;
+
+select k.nazwa as nazwa, sum(z.waga*e.ilosc)/count(distinct u.id_uczwstnika) as waga from kreatura k
 left join ekwipunek e on k.idKreatury=e.idKreatury
 left join zasob z on e.idZasobu=z.idZasobu
-left join uczestnicy u on k.idKreatury=u.id_uczestnika
+left join uczestnicy u on k.idKreatury=u.id_uczestnika 
 left join wyprawa w on u.id_wyprawy=w.id_wyprawy
 where id_uczestnika is not null
 group by w.nazwa;
