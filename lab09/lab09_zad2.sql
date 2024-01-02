@@ -12,7 +12,7 @@ select * from wikingowie.wyprawa;
 
 select * from wyprawa;
 
-DELIMITER $$
+DELIMITER //
 create trigger before_delete_wyprawa
 before delete on wyprawa
 for each row
@@ -28,6 +28,6 @@ begin
         left join wyprawa w on w.kierownik = k.idKreatury);
 	end if;
 end
-$$ DELIMITER ;
+// DELIMITER ;
 
 show create table wikingowie.wyprawa;
