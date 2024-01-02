@@ -19,15 +19,32 @@ for each row
 begin
 	if wyprawa.kierownik is not null and wyprawa.kierownik = kreatura.idKreatury
     then
-		set archiwum_wyprawa.id_wyprawy = wyprawa.id_wyprawy;
-		set archiwum_wyprawa.nazwa = wyprawa.nazwa;
-        set archiwum_wyprawa.data_rozpoczecia = wyprawa.data_rozpoczecia;
-        set archiwum_wyprawa.data_zakonczenia = wyprawa.data_zakonczenia;
-		set archiwum_wyprawa.kierownik = 
-        (select concat(k.imie, ' ', k.nazwisko) as nazwa from kreatura k
-        left join wyprawa w on w.kierownik = k.idKreatury);
+		insert into archiwum_wyprawy values(
+        wyprawa.id_wyprawy,
+        wyprawa.nazwa,
+        wyprawa.data_rozpoczecia,
+        wyprawa.data_zakonczenia,
+        (select concat(k.imie,' ',k.nazwisko) from kreatura k 
+        left join wyprawa w on w.kierownik = k.idKreatury 
+        where k.idKreatury=w.kierownik));
 	end if;
 end
 // DELIMITER ;
 
+
 show create table wikingowie.wyprawa;
+
+# pokazane przez professora
+
+DELIMITER //
+create trigger wyprawa_after_delete
+after delete on wyprawa
+for each row
+begin
+insert into archiwum_wyprawy 
+select w.id_wyprawy, w.nazwa, w.data_rozpoczecia, w.data_zakonczenia, k.nazwa 
+from wyprawa w
+inner join kreatura k on k.idKreatury=w.kierownik
+where id_wyprawy=old.id_wyprawy;
+end
+// DELIMITER ;
