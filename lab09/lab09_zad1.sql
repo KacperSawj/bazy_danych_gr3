@@ -13,3 +13,5 @@ begin
 end
 // 
 DELIMITER ;
+
+insert into kreatura (idKreatury,nazwa, waga) values(50,'Narwal',0)
