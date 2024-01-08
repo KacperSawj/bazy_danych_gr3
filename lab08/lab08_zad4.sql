@@ -16,5 +16,7 @@ left join ekwipunek e on k.idKreatury=e.idKreatury
 left join zasob z on e.idZasobu=z.idZasobu
 left join uczestnicy u on k.idKreatury=u.id_uczestnika 
 left join wyprawa w on u.id_wyprawy=w.id_wyprawy
-where id_uczestnika is not null
-group by w.nazwa;
+where u.id_uczestnika is not null
+and z.waga is not null
+and e.ilosc is not null
+group by k.nazwa;
