@@ -21,3 +21,20 @@ select sum(pz.ilosc*pz.cena) as wartosc_anulowanych from zamowienie z
 inner join pozycja_zamowienia pz on z.id_zamowienia=pz.zamowienie
 inner join status_zamowienia sz on z.status_zamowienia=sz.id_statusu_zamowienia
 where sz.id_statusu_zamowienia = 6;
+
+# zad5
+select ak.miejscowosc, count(z.id_zamowienia), sum(pz.ilosc*pz.cena) from zamowienie z
+inner join klient k on z.klient = k.id_klienta
+inner join adres_klienta ak on k.id_klienta = ak.klient
+inner join pozycja_zamowienia pz on z.id_zamowienia = pz.zamowienie
+group by ak.miejscowosc;
+
+# zad6
+select sum(pz.ilosc*pz.cena) as dot_dochod from zamowienie z
+inner join pozycja_zamowienia pz on z.id_zamowienia = pz.zamowienie
+where status_zamowienia = 5;
+
+# zad7
+select year(z.) sum(pz.ilosc*pz.cena)-sum(pz.ilosc*t.cena_zakupu) as dochod from zamowienie z
+inner join pozycja_zamowienia pz on z.id_zamowienia = pz.zamowienie
+inner join towar t on pz.towar = t.id_towaru;
